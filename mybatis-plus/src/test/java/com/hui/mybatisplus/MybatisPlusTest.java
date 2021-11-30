@@ -41,17 +41,24 @@ public class MybatisPlusTest {
 
     @Test
     public void mytest(){
-        System.out.println("9533301552(12321)".replaceAll("\\(.*\\)", ""));
-        User user = new User();
-        user.setAge(20);
-        user.setEmail("461321");
-        user.setId(123123213123L);
-        user.setName("231231231");
-        List<User> list = new ArrayList<>();
-        list.add(user);
-        System.err.println(user);
-        list.stream().forEach(x -> x.setName("圣辉"));
-        System.err.println(user);
+//        System.out.println("9533301552(12321)".replaceAll("\\(.*\\)", ""));
+//        User user = new User();
+//        user.setAge(20);
+//        user.setEmail("461321");
+//        user.setId(123123213123L);
+//        user.setName("231231231");
+//        List<User> list = new ArrayList<>();
+//        list.add(user);
+//        System.err.println(user);
+//        list.stream().forEach(x -> x.setName("圣辉"));
+//        System.err.println(user);
+        System.err.println(getUpdateDef6("KCPMPE211105", 1));
+    }
+
+
+    private String getUpdateDef6(String def6, Integer i) {
+        String substring = def6.substring(def6.length() - 6);
+        return def6.substring(0, def6.length() - 6) + (new Integer(substring) + 1);
     }
 
 

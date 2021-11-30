@@ -1,9 +1,10 @@
 package com.hui.mybatisplus.user;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hui.mybatisplus.base.inter.BaseService;
 import com.hui.mybatisplus.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService extends ServiceImpl<UserMapper, User> {
+public class UserService extends ServiceImpl<UserMapper, User> implements BaseService<User> {
 }
