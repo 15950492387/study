@@ -19,6 +19,7 @@
         <module>zookeeper</module>
         <module>hadoop</module>
         <module>mybatis-plus</module>
+        <module>niuke</module>
     </modules>
 
     <properties>
