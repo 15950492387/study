@@ -1,11 +1,9 @@
 package com.hui.hadoop;
 
-import com.sun.jndi.toolkit.url.Uri;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
 import org.apache.hadoop.io.IOUtils;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,7 +41,7 @@ class HadoopApplicationTests {
 
     @AfterEach
     void initAfter() throws IOException {
-        // 关闭文件系统
+        // 关闭文件系统下·
         fs.close();
     }
 
