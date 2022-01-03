@@ -31,8 +31,8 @@ public class WordCountDriever {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         // 设置输入和输出路径
-        FileInputFormat.setInputPaths(job, new Path("G:\\hadooptest\\test.txt"));
-        FileOutputFormat.setOutputPath(job, new Path("G:\\hadooptest\\output"));
+        FileInputFormat.setInputPaths(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
         // 提交job
         job.waitForCompletion(true);
     }
