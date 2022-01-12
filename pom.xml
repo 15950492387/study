@@ -19,6 +19,7 @@
         <module>hadoop</module>
         <module>mybatis-plus</module>
         <module>niuke</module>
+        <module>netty</module>
     </modules>
 
     <properties>
