@@ -12,3 +12,18 @@
         一个mapTask处理一个切片的数据。
     2.4 切片的大小
         默认情况下  切片大小等于块大小
+3. InputFormat 数据输入
+    3.1 重要的方法：
+        getSplits(): 生成切片
+        createRecordReader(): 创建RecordReader对象，负责数据的读取、
+    3.2 子抽象类FileInputFormat
+        1) TextInputFormat 是默认使用的InputFormat 类
+           @1 createRecordReader()
+           @2 isSpilitable(): 重写了该方法，对各种压缩文件进行了判断是否可切分。
+           @3 切片的规则用的是FileInputFormat中的实现
+        2) CombineTextInputFormat 解决小文件场景生成过多切片的问题
+4. shuffle 机制
+    4.1 shuffle 的位置
+        Map方法之后，reduce方法之前的方法称为shuffle
+    4.2 shuffle 的具体划分：
+        map ----> sort(map阶段) ----> copy(reduce阶段) ---->sort(reduce阶段) ----> reduce
