@@ -1,31 +1,19 @@
-package com.hui.netty;
+package com.hui.netty.test01;
 
-import com.hui.netty.test01.TestServerInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.EventLoopGroup;
-import io.netty.channel.nio.NioEventLoop;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-public class NettyApplicationTest {
+public class Test01 {
 
-    @Test
-    public void testone() throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
         EventLoopGroup boosGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         ServerBootstrap serverBootstrap = new ServerBootstrap();
 
         serverBootstrap.group(boosGroup, workerGroup).channel(NioServerSocketChannel.class)
                 .childHandler(new TestServerInitializer());
-
         serverBootstrap.bind(8888).sync();
     }
-
-
-
-
 }
