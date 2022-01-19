@@ -1,6 +1,5 @@
 package com.hui.netty.company.testcs;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
@@ -14,18 +13,13 @@ public class MyClientHandler extends SimpleChannelInboundHandler<String> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
         System.out.println(msg);
-
         ctx.channel().writeAndFlush("6666");
     }
-
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("激活客户端");
         ctx.channel().writeAndFlush("6666");
     }
-
-
-
 
 }
