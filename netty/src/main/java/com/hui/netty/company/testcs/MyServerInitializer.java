@@ -23,5 +23,7 @@ public class MyServerInitializer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast("decoder", new StringDecoder(CharsetUtil.UTF_8));
         pipeline.addLast("encoder", new StringEncoder(CharsetUtil.UTF_8));
         pipeline.addLast("handler", new MyServerHandle());
+
+        System.out.println("SimpleChatClient:"+channel.remoteAddress() +"连接上");
     }
 }

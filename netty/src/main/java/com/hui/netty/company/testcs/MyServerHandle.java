@@ -12,6 +12,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 public class MyServerHandle extends SimpleChannelInboundHandler<String> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-        ctx.channel().writeAndFlush("from server: " + msg);
+        System.out.println(msg);
+        ctx.channel().writeAndFlush("from server: " + "6666");
     }
 }
