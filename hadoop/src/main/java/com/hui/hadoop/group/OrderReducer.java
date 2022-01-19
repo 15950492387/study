@@ -11,12 +11,13 @@ import java.io.IOException;
  * @Date 2022/1/17 15:44
  * @Created by HUI
  */
-public class OrderReducer extends Reducer<OrderBean, Text, Text, OrderBean> {
+public class OrderReducer extends Reducer<OrderBean, Text, OrderBean, Text> {
 
     @Override
-    protected void reduce(OrderBean key, Iterable<Text> values, Reducer<OrderBean, Text, Text, OrderBean>.Context context) throws IOException, InterruptedException {
-        for (Text value : values) {
-            context.write(value, key);
+    protected void reduce(OrderBean key, Iterable<Text> values, Reducer<OrderBean, Text, OrderBean, Text>.Context context) throws IOException, InterruptedException {
+        for (Text text : values) {
+            System.out.println(text.toString());
         }
+        context.write(key, new Text("666"));
     }
 }
