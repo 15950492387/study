@@ -1,4 +1,4 @@
-package com.hui.netty.test01;
+package com.hui.netty.http;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.EventLoopGroup;

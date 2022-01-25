@@ -1,4 +1,4 @@
-package com.hui.netty.test01;
+package com.hui.netty.http;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

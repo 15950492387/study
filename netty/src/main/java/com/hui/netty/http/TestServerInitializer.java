@@ -1,4 +1,4 @@
-package com.hui.netty.test01;
+package com.hui.netty.http;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
