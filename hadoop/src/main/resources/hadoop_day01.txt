@@ -27,3 +27,72 @@
         Map方法之后，reduce方法之前的方法称为shuffle
     4.2 shuffle 的具体划分：
         map ----> sort(map阶段) ----> copy(reduce阶段) ---->sort(reduce阶段) ----> reduce
+
+1. MR源码解读
+1.1 Job的提交过程
+   一、在java类中提交job
+    1、submit(); 确认job的状态，状态为define，进行Job的提交
+        1.1 ensureState();再次确认状态
+        1.2 setUseNewAPI(); 设置使用新的api
+        1.3 connect();
+            1.3.1 return new cluster(getConfiguration()); // 创建cluster对象
+            1.3.2 初始化方法
+            1.3.3 获取是在本地执行还是在yarn上面执行, 根据job的信息获取要在哪里执行 本地获取到localJobRunner
+            1.4 提交job
+                1.4.1 checkspeces(job); // 验证job的输出路径
+                1.4.2 path jobstagingArea  获取job的临时工作区间  就是一个路径工作的路径
+                1.4.3 JobID 获取到JobID
+                1.4.4 生成job的提交路径  就是上面的路径加上JobID  文件夹未生成
+                1.4.5 copyAndConfigueFiles
+                1.4.6 创建上面生成的路径 submitJobFile int maps = writeSplits(job, submitJobDir);  // 生成切片，并且返回切片的个数
+                1.4.7 生成切片  刚刚生成的文件夹子开始有数据了
+                1.4.8 conf.setInt()   根据切片的个数设置MapTask的个数 以上其实都是准备工作
+                1.4.9 writeConf(conf, submitJobFile) //将配置文件写入了
+                1.4.10 job 最后将job提交路径删除
+   二、job提交流程的关键点
+        Driever中提交Job --> 明确job的运行环境（本地或者是yarn） --> 规划job的提交路径 --> 生成切片信息写入到job的提交路径
+1.2 MapTask
+    一、真正的提交job
+        1.1 创建号job直接启动  跟driver里面的job不一样   这是个线程
+        1.2 运行线程的run方法
+            1.2.1  读取切片的信息
+            1.2.2 根据切片的信息    创建线程
+            1.2.3 线程池运行run方法
+            1.2.4
+    二、缓冲区对象
+        1.1 创建缓冲区对象
+            1.1.1 collector
+            1.1.2 collertor 初始化
+            1.1.3 溢写百分比  默认80%  配置项：mapreduce.map.sort.spill.percernt
+            1.1.4 缓冲区大小 默认100mb 相关参数： mapreducer.task.io.sort.mb
+            1.1.5 排序对象： QuickSorter ，默认使用的是快速排序
+            1.1.6 排序比较
+            1.1.7 启动溢写线程   收集线程（将kv收集到缓冲区中）和溢写线程（将kv溢出磁盘）
+        1.2 partitions 跟溢写相关的代码
+
+1.3 ReducerTask
+    一、LocalJobRunner$Job中的run方法
+        1、创建reducerRunnables对象
+        2、创建线程池
+        3、交给线程池执行
+            3.2 开始执行线程的方法
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

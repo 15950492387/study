@@ -18,6 +18,11 @@ public class CompareMapper extends Mapper<LongWritable, Text, Flowable, Text> {
     private Flowable oValue = new Flowable();
 
     @Override
+    protected void setup(Mapper<LongWritable, Text, Flowable, Text>.Context context) throws IOException, InterruptedException {
+        context.getCounter("Map Join", "setup").increment(1);
+    }
+
+    @Override
     protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Flowable, Text>.Context context) throws IOException, InterruptedException {
         String lineStr = value.toString();
         String[] splits = lineStr.split(" ");
