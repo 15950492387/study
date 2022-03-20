@@ -33,8 +33,8 @@ public class WordCountDriever {
         // 设置输入和输出路径
         job.setCombinerClass(WordCountCombain.class);
         //设置combain
-        FileInputFormat.setInputPaths(job, new Path("G:\\hadooptest\\test.txt"));
-        FileOutputFormat.setOutputPath(job, new Path("G:\\hadooptest\\sumoutput2"));
+        FileInputFormat.setInputPaths(job, new Path("E:\\hadooptest\\test.txt"));
+        FileOutputFormat.setOutputPath(job, new Path("E:\\hadooptest\\sumoutput2"));
         // 提交job
         job.waitForCompletion(true);
     }
